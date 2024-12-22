@@ -1,21 +1,21 @@
 // ВАРИАНТ кода без DI
-
+// При такой реализации сложно давить новый тип печки (тип ovenType) в существующую структуру BakeryNoDI
 package main
 
 import "fmt"
 
-type Bakery struct {
+type BakeryNoDI struct {
 	ovenType    string
 	ingredients []string
 }
 
-func (b *Bakery) Bake() {
+func (b *BakeryNoDI) Bake() {
 	switch b.ovenType {
 	case "gas oven":
 		fmt.Println("Heating with gas oven!")
 
 	case "electric oven":
-		fmt.Println("Heating with gas oven!")
+		fmt.Println("Heating with electric oven!")
 	}
 	for _, ingredient := range b.ingredients {
 		switch ingredient {
@@ -33,10 +33,10 @@ func (b *Bakery) Bake() {
 }
 
 func main() {
-	bakery := Bakery{ovenType: "gas oven", ingredients: []string{"flour", "sugar"}}
+	bakery := BakeryNoDI{ovenType: "gas oven", ingredients: []string{"flour", "sugar"}}
 	bakery.Bake()
 
-	bakery = Bakery{ovenType: "electric oven", ingredients: []string{"sugar", "butter"}}
+	bakery = BakeryNoDI{ovenType: "electric oven", ingredients: []string{"sugar", "butter"}}
 	bakery.Bake()
 
 }
